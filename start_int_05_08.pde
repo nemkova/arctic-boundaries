@@ -31,8 +31,8 @@ void setup() {
     String[] arrTokens = split(strLines[i], ',');
     Vec3D loc = new Vec3D(float(arrTokens[0]),-float(arrTokens[1]),float(arrTokens[2]));
     type = int(arrTokens[3]);
-    type1 = int(arrTokens[11]);
-    type2 = int(arrTokens[5]);
+    type1 = int(arrTokens[9]);
+    type2 = int(arrTokens[4]);
     //print(Loadtype);
     Cell= new Cells(loc,type, type1, type2);    
     CellList.add(Cell);         
