@@ -13,8 +13,13 @@ Cells Cell;
   
 ArrayList CellList= new ArrayList();   
 int type;//land sea
-int type1;//land types
-int type2;//bound
+int Ltype;//land types
+int bound;//bound
+int com_area;
+int mount;
+int veg;
+int port;
+int inside;
 
 
 void setup() {
@@ -26,15 +31,20 @@ void setup() {
   
 ////////////////////////////////////////////
 ///////
-  String[] strLines = loadStrings("data/Import_pts0508.txt");
+  String[] strLines = loadStrings("data/Import_pts0708.txt");
   for (int i = 0; i < strLines.length; ++i) {
     String[] arrTokens = split(strLines[i], ',');
     Vec3D loc = new Vec3D(float(arrTokens[0]),-float(arrTokens[1]),float(arrTokens[2]));
     type = int(arrTokens[3]);
-    type1 = int(arrTokens[9]);
-    type2 = int(arrTokens[4]);
+    Ltype = int(arrTokens[9]);
+    bound = int(arrTokens[4]);
+    com_area = int(arrTokens[5]);
+    mount = int(arrTokens[6]);
+    veg = int(arrTokens[7]);
+    port = int(arrTokens[8]);
+    inside = int(arrTokens[10]);
     //print(Loadtype);
-    Cell= new Cells(loc,type, type1, type2);    
+    Cell= new Cells(loc,type, Ltype, bound, com_area, mount, veg, port, inside);    
     CellList.add(Cell);         
     W+=1;
   }
@@ -51,9 +61,9 @@ void draw() {
     }                                          //
       
       
-//      if (keyPressed == true){
+      if (keyPressed == true){
       for (int i=0;i<W;i++) {                  //
-      Cell = (Cells)CellList.get(i);           
+     Cell = (Cells)CellList.get(i);           
       Cell.evalN();      //
     }  
      // }    

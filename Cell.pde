@@ -2,8 +2,15 @@
 
   Vec3D loc;
   int type;//sea-land
-  int type1;//land types
-  int type2;//boundaries
+  int Ltype;//land types
+  int bound;//boundaries
+  int com_area;
+  int mount;
+  int veg;
+  int port;
+  int inside;
+  
+  
   int futType;
   ArrayList Bounds = new ArrayList();
 
@@ -21,11 +28,16 @@
 
 
 
-  Cells(Vec3D _loc, int _type, int _type1, int _type2) {
+  Cells(Vec3D _loc, int _type, int _Ltype, int _bound, int _com_area, int _mount, int _veg, int _port, int _inside) {
     loc=_loc;
     type=_type;
-    type1 = _type1;
-    type2 = _type2;
+    Ltype = _Ltype;
+    bound = _bound;
+    com_area = _com_area;
+    mount = _mount;
+    veg = _veg;
+    port = _port;
+    inside = _inside;
   }
 
   void run() {
@@ -48,17 +60,14 @@
       float distance= loc.distanceTo(other.loc);
       
       if (type == 2) {
-        if(type2==1 && other.type1!=5){
-        if (distance>0 && distance<vegDist && type1 == 3 && other.type1 == 3 ) {
-          other.type2 = 1;
-          type2 = 0;
-          type2 = 0;  
+        if(bound==1 && other.inside!=5){
+        if (distance>0 && distance<vegDist && Ltype == 3 && other.Ltype == 3 ) {
+          other.bound = 1;
+          bound = 0;  
         }
        else {
-         other.type1 = 6;
-         type1 = 3;
-         other.type2 = 0;
-         type2 = 1;
+         other.bound = 0;
+         bound = 1;
        }
       }
       }
@@ -89,28 +98,25 @@ dev.type1 = 4;
     }
      
       
-     else if (type1==8) {
-      stroke(#766c44);//mount - brown
+     else if (mount==8) {
+      stroke(136,131,100,60);//mount - brown
       point(loc.x, loc.y, loc.z);
-    } else if (type1==3) {
-      stroke(#3f9814);//code_veg - green
+    }  else if (veg==3) {
+      stroke(104,154,76,80);//code_veg - green
       point(loc.x, loc.y, loc.z);
-    } else if (type1==4) {
-      stroke(#ff3838);//code_ports - red
+    } else if (port==4) {
+      stroke(255,56,56,70);//code_ports - red
       point(loc.x, loc.y, loc.z);
-    } else if (type1==7) {
-      stroke(#fff499);//current_bound - beige
+    }  else if (com_area==7) {
+      stroke(255,236,162,30);//current_bound - beige
       point(loc.x, loc.y, loc.z);
     } 
-    else if (type1==6) {
-      stroke(#726c6c);//no_usage - grey
-      point(loc.x, loc.y, loc.z);
-    } else {
+     else {
       stroke(100);
       point(loc.x, loc.y, loc.z);//grey
     }
-    if(type2 == 1){
-    stroke(#ff9600);//current_bound - orange
+    if(bound == 1){
+    stroke(228,150,0,80);//current_bound - orange
       point(loc.x, loc.y, loc.z);
     }
   }
