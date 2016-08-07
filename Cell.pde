@@ -1,4 +1,4 @@
- class Cells {
+class Cells {
 
   Vec3D loc;
   int type;//sea-land
@@ -46,39 +46,43 @@
     for (int i=0; i<CellList.size (); i++) {
       Cells other =(Cells) CellList.get(i);
       float distance= loc.distanceTo(other.loc);
-      
+      if(type2 == 1){
+      Bounds.add(i);
+      print(Bounds.size());
+      }
       if (type == 2) {
-        if(type2==1 && other.type1!=5){
-        if (distance>0 && distance<vegDist && type1 == 3 && other.type1 == 3 ) {
+        if(type2==1){
+        if (distance>0 && distance<vegDist && type1 == 3 && other.type1 == 6) {
+          other.type1 = 3;
+          type1 = 3;
           other.type2 = 1;
-          type2 = 0;
           type2 = 0;  
         }
-       else {
+       else if (distance>vegDist && other.type1==6 && type1 == 3) {
          other.type1 = 6;
-         type1 = 3;
-         other.type2 = 0;
-         type2 = 1;
+        type1 = 3;
+        other.type2 = 0;
+          type2 = 1;
        }
       }
       }
     }
   }
 
-/**void changeType(){
-
+void changeType(){
+if (mousePressed == true){
 for(int i = 0; i <CellList.size();i++){
 Cells dev = (Cells) CellList.get(i);
 Vec3D mouseLoc = new Vec3D(mouseX,mouseY,0);
 Vec3D pointLoc = dev.loc;
-if(mouseLoc.x == pointLoc.x && mouseLoc.y == pointLoc.y && mousePressed == true){
+if(mouseLoc.x == pointLoc.x && mouseLoc.y == pointLoc.y){
 dev.type1 = 4;
 }
 }
-
+}
 
 }
-*/
+
 
   void view() {
 
@@ -86,23 +90,19 @@ dev.type1 = 4;
     if (type== 1) {//sea - blue
       stroke(#5574fc);
       point(loc.x, loc.y, loc.z);
-    }
-     
-      
-     else if (type1==8) {
-      stroke(#766c44);//mount - brown
+    } else if (type1==2) {
+      stroke(#766c44);//land - brown
       point(loc.x, loc.y, loc.z);
     } else if (type1==3) {
       stroke(#3f9814);//code_veg - green
       point(loc.x, loc.y, loc.z);
     } else if (type1==4) {
-      stroke(#ff3838);//code_ports - red
+      stroke(#7a7a7a);//code_ports - grey
       point(loc.x, loc.y, loc.z);
-    } else if (type1==7) {
-      stroke(#fff499);//current_bound - beige
+    } else if (type1==5) {
+      stroke(#ff9600);//current_bound - orange
       point(loc.x, loc.y, loc.z);
-    } 
-    else if (type1==6) {
+    } else if (type1==6) {
       stroke(#726c6c);//no_usage - grey
       point(loc.x, loc.y, loc.z);
     } else {
