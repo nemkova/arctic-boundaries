@@ -1,4 +1,4 @@
- class Cells {
+class Cells {
 
   Vec3D loc;
   int type;//sea-land
@@ -9,10 +9,7 @@
   int veg;
   int port;
   int inside;
-  
-  
-  int futType;
-  ArrayList Bounds = new ArrayList();
+
 
 //percentages
   float p = 1;
@@ -55,7 +52,7 @@
 
   void evalN() {
 
-    for (int i=0; i<CellList.size (); i++) {
+     for (int i=0; i<CellList.size (); i++) {
       Cells other =(Cells) CellList.get(i);
       float distance= loc.distanceTo(other.loc);
       
@@ -74,20 +71,8 @@
     }
   }
 
-/**void changeType(){
-
-for(int i = 0; i <CellList.size();i++){
-Cells dev = (Cells) CellList.get(i);
-Vec3D mouseLoc = new Vec3D(mouseX,mouseY,0);
-Vec3D pointLoc = dev.loc;
-if(mouseLoc.x == pointLoc.x && mouseLoc.y == pointLoc.y && mousePressed == true){
-dev.type1 = 4;
-}
-}
 
 
-}
-*/
 
   void view() {
 
@@ -95,10 +80,7 @@ dev.type1 = 4;
     if (type== 1) {//sea - blue
       stroke(#5574fc);
       point(loc.x, loc.y, loc.z);
-    }
-     
-      
-     else if (mount==8) {
+    }  else if (mount==8) {
       stroke(136,131,100,60);//mount - brown
       point(loc.x, loc.y, loc.z);
     }  else if (veg==3) {
